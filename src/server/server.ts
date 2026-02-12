@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb+srv://moko:nazarIX1@moko.hdn8ymr.mongodb.net/?appName=moko')
+mongoose.connect('mongodb+srv://moko:render123@moko.hdn8ymr.mongodb.net/?appName=moko')
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error('DB Error:', err));
 
