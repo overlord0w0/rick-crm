@@ -15,8 +15,8 @@ app.use(cors());
 app.use(express.json());
 
 mongoose.connect('mongodb+srv://moko:render123@moko.hdn8ymr.mongodb.net/?appName=moko')
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.error('DB Error:', err));
+    .then(() => console.log('🟢 MongoDB Connected!'))
+    .catch(err => console.error('🔴 DB Error:', err));
 
 const getAuth = (req: express.Request) => {
     const token = req.headers.authorization;
@@ -27,6 +27,8 @@ const getAuth = (req: express.Request) => {
         return { username };
     } catch (e) { return null; }
 };
+
+// --- ROUTES ---
 
 app.get('/api/favorites', async (req, res) => {
     const user = getAuth(req);
@@ -144,10 +146,10 @@ app.post('/api/upload', upload.single('avatar'), async (req, res) => {
 const distPath = path.join(process.cwd(), 'dist');
 app.use(express.static(distPath));
 
-app.get('*', (req, res) => {
+app.get(/.*/, (req, res) => {
     res.sendFile(path.join(distPath, 'index.html'));
 });
 
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`🚀 Server running on port ${PORT}`);
 });
